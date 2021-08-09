@@ -19,7 +19,7 @@ const planoDeFundo = {
         contexto.fillRect(0, 0, canvas.width, canvas.height);
 
         contexto.drawImage(
-            sprites, 
+            sprites,
             planoDeFundo.spriteX, planoDeFundo.spriteY,
             planoDeFundo.largura, planoDeFundo.altura,
             planoDeFundo.x, planoDeFundo.y,
@@ -27,13 +27,13 @@ const planoDeFundo = {
         );
 
         contexto.drawImage(
-            sprites, 
+            sprites,
             planoDeFundo.spriteX, planoDeFundo.spriteY,
             planoDeFundo.largura, planoDeFundo.altura,
             planoDeFundo.x + planoDeFundo.largura, planoDeFundo.y,
             planoDeFundo.largura, planoDeFundo.altura
         );
-        
+
     }
 }
 
@@ -47,7 +47,7 @@ const chao = {
     y: canvas.height - 112,
     desenha() {
         contexto.drawImage(
-            sprites, 
+            sprites,
             chao.spriteX, chao.spriteY,
             chao.largura, chao.altura,
             chao.x, chao.y,
@@ -55,7 +55,7 @@ const chao = {
         );
 
         contexto.drawImage(
-            sprites, 
+            sprites,
             chao.spriteX, chao.spriteY,
             chao.largura, chao.altura,
             chao.x + chao.largura, chao.y,
@@ -71,9 +71,15 @@ const flappyBird = {
     altura: 24,
     x: 18,
     y: 58,
+    gravidade: 0.25,
+    velocidade: 0,
+    atualiza() {
+        flappyBird.velocidade += flappyBird.gravidade;
+        flappyBird.y += flappyBird.velocidade;
+    },
     desenha() {
         contexto.drawImage(
-            sprites, 
+            sprites,
             flappyBird.spriteX, flappyBird.spriteY,
             flappyBird.largura, flappyBird.altura,
             flappyBird.x, flappyBird.y,
@@ -82,12 +88,74 @@ const flappyBird = {
     }
 }
 
-function loop() {
+// [mensagemGetReady]
+const mensagemGetReady = {
+    sX: 134,
+    sY: 0,
+    w: 174,
+    h: 152,
+    x: (canvas.width / 2) - 174 / 2,
+    y: 50,
+    desenha() {
+        contexto.drawImage(
+            sprites,
+            mensagemGetReady.sX, mensagemGetReady.sY,
+            mensagemGetReady.w, mensagemGetReady.h,
+            mensagemGetReady.x, mensagemGetReady.y,
+            mensagemGetReady.w, mensagemGetReady.h
+        );
+    }
+}
 
-    planoDeFundo.desenha();
-    chao.desenha();
-    flappyBird.desenha();
+//
+// Telas
+//
+let telaAtiva = {}
+
+function mudaTela(novaTela) {
+    telaAtiva = novaTela;
+}
+
+const Telas = {
+    INICIO: {
+        desenha() {
+            planoDeFundo.desenha();
+            chao.desenha();
+            flappyBird.desenha();
+            mensagemGetReady.desenha();
+            
+        },
+        click() {
+            mudaTela(Telas.JOGO);
+        },
+        atualiza() {
+
+        }
+    }
+}
+
+Telas.JOGO = {
+    desenha() {
+        planoDeFundo.desenha();
+        chao.desenha();
+        flappyBird.desenha();
+    },
+    atualiza() {
+        flappyBird.atualiza();
+    }
+}
+
+function loop() {
+    telaAtiva.desenha();
+    telaAtiva.atualiza();
     requestAnimationFrame(loop);
 }
 
+window.addEventListener("click", function() {
+    if(telaAtiva.click) {
+        telaAtiva.click();
+    }
+});
+
+mudaTela(Telas.INICIO);
 loop();
