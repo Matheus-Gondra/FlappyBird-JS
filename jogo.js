@@ -9,7 +9,7 @@ const contexto = canvas.getContext("2d");
 // [Chao]
 const chao = {
     spriteX: 0,
-    spriteY: 618,
+    spriteY: 610,
     largura: 224,
     altura: 112,
     x: 0,
@@ -20,6 +20,14 @@ const chao = {
             chao.spriteX, chao.spriteY,
             chao.largura, chao.altura,
             chao.x, chao.y,
+            chao.largura, chao.altura
+        );
+
+        contexto.drawImage(
+            sprites, 
+            chao.spriteX, chao.spriteY,
+            chao.largura, chao.altura,
+            chao.x + chao.largura, chao.y,
             chao.largura, chao.altura
         );
     }
@@ -46,6 +54,7 @@ const flappyBird = {
 function loop() {
 
     flappyBird.desenha();
+    chao.desenha();
     requestAnimationFrame(loop);
 }
 
