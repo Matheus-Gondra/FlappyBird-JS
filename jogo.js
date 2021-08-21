@@ -1,5 +1,7 @@
 console.log("[Matheus-Gondra] Flappy Bird");
 
+const som_HIT = new Audio();
+som_HIT.src = "./efeitos/hit.wav";
 const sprites = new Image();
 sprites.src = "./sprites.png";
 
@@ -92,9 +94,11 @@ function criaFlappyBird() {
         },
         atualiza() {
             if (fazColisao(flappyBird, chao)) {
-                console.log("fez colisao");
+                som_HIT.play();
+                setTimeout(() => {
+                    mudaTela(Telas.INICIO);
 
-                mudaTela(Telas.INICIO);
+                }, 500);
                 return;
             }
             flappyBird.velocidade += flappyBird.gravidade;
