@@ -1,36 +1,58 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
-	 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1368506705679410"
-     crossorigin="anonymous"></script>
 
-    <style>
-        body {
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Document</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+		<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1368506705679410"
+			crossorigin="anonymous"></script>
 
-        canvas {
-            border: 1px solid #000;
-            display: block;
-            margin: 0 auto;
-        }
-    </style>
-</head>
-<body> 
-   
-    <canvas id="game-canvas" width="320" height="480"></canvas>
-	 <div class="ads"></div>
-    
-    <script src="./jogo.js"></script>
-</body>
+		<style>
+			body {
+				height: 100vh;
+				min-height: 100vh;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				gap: 16px;
+			}
+
+			canvas {
+				border: 1px solid #000;
+				display: block;
+				margin: 0 auto;
+			}
+
+			.ads {
+				background-color: red;
+				width: 50%;
+				height: 80px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<h1>Flappy Clone</h1>
+		<canvas id="game-canvas" width="320" height="480"></canvas>
+		<div class="ads">
+			<script async
+				src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1368506705679410"
+				crossorigin="anonymous"></script>
+			<!-- anuncio1 -->
+			<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1368506705679410"
+				data-ad-slot="7001517184" data-ad-format="auto" data-full-width-responsive="true"></ins>
+			<script>
+				(adsbygoogle = window.adsbygoogle || []).push({});
+			</script>
+		</div>
+
+		<script src="./jogo.js"></script>
+	</body>
+
 </html>
